@@ -51,7 +51,7 @@ function StatItem({ label, value, suffix, isVisible }: StatItemProps) {
     <div className={`flex flex-col items-center justify-center p-3 sm:p-8 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
       <div className="text-2xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-1 sm:mb-2 flex items-baseline">
         <span>{count}</span>
-        <span className="text-[#00ABE4] ml-0.5 sm:ml-1">{suffix}</span>
+        <span className="text-[#891E1E] ml-0.5 sm:ml-1">{suffix}</span>
       </div>
       <div className="text-[10px] sm:text-base font-bold uppercase tracking-[0.05em] sm:tracking-widest text-slate-400">
         {label}
@@ -132,10 +132,10 @@ export default function HomeStat({ initialData }: { initialData?: any[] }) {
   return (
     <section 
       ref={sectionRef}
-      className="w-full py-4 sm:py-4 border-y border-[#E9F1FA] transition-colors duration-300 bg-white"
+      className="w-full py-4 sm:py-4 border-y border-[#891E1E]/5 transition-colors duration-300 bg-[#F5F5F5]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-3 gap-1 divide-x divide-[#E9F1FA]">
+        <div className="grid grid-cols-3 gap-1 divide-x divide-[#891E1E]/5">
           {stats.map((stat, index) => (
             <StatItem 
               key={index}

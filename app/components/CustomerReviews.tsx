@@ -83,7 +83,7 @@ const CustomerReviews = ({ initialData }: { initialData?: Review[] }) => {
     return (
         <section 
             ref={sectionRef}
-            className="w-full py-8 px-6 overflow-hidden transition-colors duration-300 bg-white"
+            className="w-full py-8 px-6 overflow-hidden transition-colors duration-300 bg-[#F5F5F5]"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Header Section - Google Branding Only */}

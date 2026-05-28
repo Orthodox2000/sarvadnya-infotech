@@ -35,6 +35,13 @@ const Productbar = ({ initialSettings }: { initialSettings?: any }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Notify other components (like Navbar) about visibility changes
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('productbar-visibility-change', { 
+      detail: { isVisible } 
+    }));
+  }, [isVisible]);
+
   // Handle Scroll Behavior (Event Driven)
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -156,7 +163,7 @@ const Productbar = ({ initialSettings }: { initialSettings?: any }) => {
 
   return (
     <div 
-      className={`w-full border-b border-white/5 relative z-[30] flex items-center overflow-x-clip no-scrollbar transition-all duration-500 ease-in-out shadow-sm bg-[#232F3E] 
+      className={`w-full border-b border-slate-200 relative z-[30] flex items-center overflow-x-clip no-scrollbar transition-all duration-500 ease-in-out shadow-sm bg-[#F5F5F5] 
         ${isVisible ? 'h-[28px] lg:h-[40px] opacity-100' : 'h-0 opacity-0 pointer-events-none'}`}
     >
       <div className="mx-auto w-full max-w-7xl px-2 sm:px-4 flex justify-evenly items-stretch h-full">
@@ -171,7 +178,7 @@ const Productbar = ({ initialSettings }: { initialSettings?: any }) => {
             alt="Sarvadnya" 
             width={20} 
             height={20} 
-            className="object-contain w-[12px] lg:w-[18px] h-auto brightness-0 invert" 
+            className="object-contain w-[12px] lg:w-[18px] h-auto" 
           />
         </Link>
 
@@ -185,9 +192,9 @@ const Productbar = ({ initialSettings }: { initialSettings?: any }) => {
             <button
               onClick={(e) => handleMenuToggle(e, item.label)}
               className={`flex items-center gap-1 lg:gap-2.5 px-1.5 lg:px-7 text-[8.5px] lg:text-[13.5px] font-bold transition-all h-full
-                ${activeMenu === item.label ? 'text-white bg-white/10' : 'text-white hover:bg-white/10'}`}
+                ${activeMenu === item.label ? 'text-[#891E1E] bg-white' : 'text-slate-600 hover:bg-white hover:text-slate-900'}`}
             >
-              <span className="opacity-100 scale-90 lg:scale-110">
+              <span className={`opacity-100 scale-90 lg:scale-110 ${activeMenu === item.label ? 'text-[#891E1E]' : 'text-slate-400'}`}>
                 {iconMap[item.label]}
               </span>
               <span className="tracking-tighter">{item.label}</span>

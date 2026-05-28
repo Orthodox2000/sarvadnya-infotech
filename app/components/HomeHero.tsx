@@ -80,7 +80,7 @@ const DEFAULT_HERO: HeroContent[] = [
         { "text": "90% FCR Track Record" }
       ],
       "ctaPrimary": { "text": "Get Priority Support", "href": "/contact" },
-      "sub1Img": "/hero/Tally-Software.png",
+      "sub1Img": "/tprime.svg",
       "sub2Img": "/sa2.png"
     },
     {
@@ -204,8 +204,8 @@ const processHeroData = (data: any[]): HeroContent[] => {
       titleText: baseTitle || (isCloud ? "Reliable Cloud & Zero-Loss Backup" : "Why Choose Certified Partner?"),
       image: mainImg,
       layout: (isCloud ? 'ecosystem' : 'standard') as 'standard' | 'ecosystem',
-      colorFrom: '#131921',
-      colorTo: '#00ABE4',
+      colorFrom: '#7B1717',
+      colorTo: '#A52A2A',
       sub1Img,
       sub2Img,
       // Update CTA for Certified Partner slide: Know More -> /about
@@ -309,25 +309,25 @@ export default function HomeHero({ initialData }: { initialData?: HeroContent[] 
   };
 
   return (
-    <main className="relative w-full overflow-hidden bg-white min-h-[500px] md:min-h-[650px] lg:min-h-[600px] lg:-mt-6 flex items-start">
+    <main className="relative w-full overflow-hidden bg-[#F5F5F5] min-h-[500px] md:min-h-[650px] lg:min-h-[600px] lg:-mt-6 flex items-start">
       <div className="absolute -z-[100] invisible h-0 w-0 overflow-hidden pointer-events-none">
         {heroContents.map((content, idx) => (
           <Image key={`preload-${idx}`} src={content.image} alt="preload" fill priority sizes="1px" />
         ))}
       </div>
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("/bgggg.png")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
+        
         <div className="absolute inset-0 opacity-40">
-          <ShapeGrid speed={0.25} squareSize={gridSize} direction="diagonal" borderColor={'#E9F1FA'} hoverFillColor={'#00ABE4'} shape="hexagon" hoverTrailAmount={4} enableColorFlow={true} />
+          <ShapeGrid speed={0.25} squareSize={gridSize} direction="diagonal" borderColor={'#891E1E'} hoverFillColor={'#891E1E'} shape="hexagon" hoverTrailAmount={4} enableColorFlow={true} />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#0371a3]/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-[#891E1E]/5 via-transparent to-transparent" />
       </div>
       <div className="w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           <div key={`content-${stableIndex}`} className="lg:justify-self-end w-full lg:max-w-[640px] px-6 lg:px-12 pt-8 lg:pt-8 pb-12 lg:pb-20 space-y-5 md:space-y-8 min-h-[300px] md:min-h-[400px] flex flex-col justify-start">
-            <div className={`inline-flex items-center gap-2 px-3 mt-5 rounded-full bg-[#E9F1FA] border border-[#00ABE4]/20 backdrop-blur-sm w-fit ${getAnimationClasses('delay-0')}`}>
-              <span className="flex h-2 w-2 rounded-full bg-[#00ABE4] animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#00ABE4]">{current.badge}</span>
+            <div className={`inline-flex items-center gap-2 px-3 mt-5 rounded-full bg-[#ffffff] border border-[#891E1E]/20 backdrop-blur-sm w-fit ${getAnimationClasses('delay-0')}`}>
+              <span className="flex h-2 w-2 rounded-full bg-[#891E1E] animate-pulse" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#891E1E]">{current.badge}</span>
             </div>
             <div className={`${getAnimationClasses('delay-100')}`}>
                <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] -mb-3">Why Choose Sarvadnya Infotech LLP?</p>
@@ -339,7 +339,7 @@ export default function HomeHero({ initialData }: { initialData?: HeroContent[] 
                   const cleanWord = word.replace(/[.,%]/g, '').toLowerCase();
                   const titleLower = (current.titleText || '').toLowerCase();
                   const isCloudSlide = titleLower.includes('cloud');
-                  
+
                   let isHighlight = false;
                   if (isCloudSlide) {
                     // For cloud slide, ONLY highlight "Backup"
@@ -348,44 +348,44 @@ export default function HomeHero({ initialData }: { initialData?: HeroContent[] 
                     // For other slides, maintain the intelligent highlighting
                     isHighlight = cleanWord === 'certified' || cleanWord === 'partner' || word.includes('90%') || i > 2;
                   }
-                  
+
                   return (
-                    <span key={i} className={isHighlight ? "text-transparent bg-clip-text bg-gradient-to-r from-[#0371a3] to-[#00ABE4]" : ""}>
+                    <span key={i} className={isHighlight ? "text-transparent bg-clip-text bg-gradient-to-r from-[#7B1717] to-[#A52A2A]" : ""}>
                       {word}{' '}
                     </span>
                   );
                 })}
-                {isTyping && <span className="inline-block w-1 h-8 md:h-12 bg-[#0371a3] ml-1 animate-pulse" />}
+                {isTyping && <span className="inline-block w-1 h-8 md:h-12 bg-[#891E1E] ml-1 animate-pulse" />}
               </h1>
             </div>
             <p className={`text-sm md:text-lg text-slate-600 max-w-xl leading-snug font-medium min-h-[60px] ${getAnimationClasses('delay-300')}`}>{current.description}</p>
             <div className={`grid grid-cols-2 gap-4 ${getAnimationClasses('delay-500')}`}>
               {(current.features || []).map((f, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="h-5 w-5 rounded-full bg-[#E9F1FA] flex items-center justify-center border border-[#00ABE4]/20">
-                    <svg className="w-3 h-3 text-[#00ABE4]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <div className="h-5 w-5 rounded-full bg-[#ffffff] flex items-center justify-center border border-[#891E1E]/20">
+                    <svg className="w-3 h-3 text-[#891E1E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                   </div>
                   <span className="text-sm font-bold text-slate-700">{f.text}</span>
                 </div>
               ))}
             </div>
             <div className={`flex flex-wrap gap-4 ${getAnimationClasses('delay-700')}`}>
-              <Link href={current.ctaPrimary?.href || '/products'} className="group relative overflow-hidden px-8 py-4 rounded-2xl bg-black text-white font-black text-xs uppercase tracking-widest shadow-2xl shadow-black/20 transition-all duration-500 ease-in-out hover:bg-white hover:text-black border border-transparent hover:border-black hover:scale-[1.05] active:scale-95">
+              <Link href={current.ctaPrimary?.href || '/products'} className="group relative overflow-hidden px-8 py-4 rounded-2xl bg-[#891E1E] text-white font-black text-xs uppercase tracking-widest shadow-2xl shadow-[#891E1E]/20 transition-all duration-500 ease-in-out hover:bg-white hover:text-[#891E1E] border border-transparent hover:border-[#891E1E] hover:scale-[1.05] active:scale-95">
                 <span className="relative z-10">{current.ctaPrimary?.text || 'Explore'}</span>
               </Link>
               <button 
                 onClick={() => setModalConfig({ isOpen: true, type: 'demo', service: 'TallyPrime', details: 'Requesting a personalized demo' })} 
-                className="group px-8 py-4 rounded-2xl bg-white text-[#38bdf8] font-black text-xs uppercase tracking-widest shadow-sm transition-all duration-500 ease-in-out hover:bg-[#38bdf8] hover:text-white hover:scale-[1.05] active:scale-95 border border-[#38bdf8]/30"
+                className="group px-8 py-4 rounded-2xl bg-[#ffffff] text-[#891E1E] font-black text-xs uppercase tracking-widest shadow-sm transition-all duration-500 ease-in-out hover:bg-[#891E1E] hover:text-white hover:scale-[1.05] active:scale-95 border border-[#891E1E]/30"
               >
                 Request Free Demo
               </button>
             </div>
-          </div>
-          <div key={`visual-${stableIndex}`} className="relative hidden lg:flex items-center justify-center w-full px-4 xl:px-8">
+            </div>
+            <div key={`visual-${stableIndex}`} className="relative hidden lg:flex items-center justify-center w-full px-4 xl:px-8">
              <div className="relative w-full max-w-[540px] aspect-square group">
                 {current.layout === 'ecosystem' ? (
                   <div className="relative w-full h-full">
-                    <div className={`absolute top-[10%] left-[15%] w-[75%] aspect-square rounded-[3rem] overflow-hidden border border-[#131921]/10 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] z-30 transform bg-white
+                    <div className={`absolute top-[10%] left-[15%] w-[75%] aspect-square rounded-[3rem] overflow-hidden border border-[#891E1E]/10 shadow-[0_40px_80px_-15px_rgba(137,30,30,0.2)] z-30 transform bg-white
                       ${isExiting ? 'opacity-0 scale-90 translate-y-12 transition-all duration-[800ms]' : isEntering ? `opacity-100 transition-all duration-[1200ms] ${ecoScheme.main}` : 'opacity-0 translate-y-4'}`}>
                        <Image src={current.image} alt="Main" fill className="object-cover opacity-20 blur-xl scale-110" sizes="(max-width: 1024px) 100vw, 540px" />
                        <div className="absolute inset-0"><Image src={current.image} alt="Ecosystem" fill className="object-contain" sizes="(max-width: 1024px) 100vw, 540px" /></div>
@@ -401,7 +401,25 @@ export default function HomeHero({ initialData }: { initialData?: HeroContent[] 
                   </div>
                 ) : (
                   <div className="relative w-full h-full">
-                    <div className={`absolute top-[10%] right-0 w-[75%] aspect-square rounded-[3rem] overflow-hidden border border-[#0371a3]/20 shadow-[0_40px_80px_-15px_rgba(3,113_163,0.3)] z-40 transform bg-white
+                    <div className={`absolute top-[10%] right-0 w-[75%] aspect-square rounded-[3rem] overflow-hidden border border-[#891E1E]/20 shadow-[0_40px_80px_-15px_rgba(137,30,30,0.3)] z-40 transform bg-white
+                        ${isExiting ? 'opacity-0 scale-90 translate-y-12 transition-all duration-[800ms]' : isEntering ? `opacity-100 transition-all duration-[1200ms] ${scheme.main}` : 'opacity-0 translate-y-4'}`}>
+                      <Image src={current.image} alt="Backdrop" fill className="object-cover opacity-20 blur-xl scale-110" sizes="(max-width: 1024px) 100vw, 540px" />
+                      <div className="absolute inset-0"><Image src={current.image} alt={current.titleText} fill priority className="object-contain" sizes="(max-width: 1024px) 100vw, 540px" /></div>
+                    </div>
+                    <div className={`absolute top-[-5%] left-[-10%] w-[50%] aspect-square rounded-[2.5rem] overflow-hidden border border-slate-200/50 shadow-2xl z-20 bg-white
+                        ${isExiting ? 'opacity-0 -translate-x-12 -translate-y-12 transition-all duration-[800ms]' : isEntering ? `opacity-100 transition-all duration-[1400ms] delay-200 ${scheme.sub1}` : 'opacity-0 translate-y-4'}`}>
+                      <Image src={scheme.sub1Img} alt="Enterprise Logic" fill className="object-cover opacity-10 blur-lg grayscale" sizes="250px" />
+                      <div className="absolute inset-0"><Image src={scheme.sub1Img} alt="Tally ERP" fill className="object-contain grayscale" sizes="250px" /></div>
+                    </div>
+                    <div className={`absolute bottom-[-10%] left-[-10%] w-[45%] aspect-square rounded-[2rem] overflow-hidden border border-white/80 shadow-2xl z-30 bg-white
+                        ${isExiting ? 'opacity-0 -translate-x-16 translate-y-16 transition-all duration-[800ms]' : isEntering ? `opacity-100 transition-all duration-[1600ms] delay-400 ${scheme.sub2}` : 'opacity-0 translate-y-4'}`}>
+                      <Image src={scheme.sub2Img} alt="Analytics View" fill className="object-cover opacity-10 blur-md" sizes="200px" />
+                      <div className="absolute inset-0"><Image src={scheme.sub2Img} alt="Business Data" fill className="object-contain" sizes="200px" /></div>
+                    </div>
+                  </div>
+                ) || (
+                  <div className="relative w-full h-full">
+                    <div className={`absolute top-[10%] right-0 w-[75%] aspect-square rounded-[3rem] overflow-hidden border border-[#891E1E]/20 shadow-[0_40px_80px_-15px_rgba(137,30,30,0.3)] z-40 transform bg-white
                         ${isExiting ? 'opacity-0 scale-90 translate-y-12 transition-all duration-[800ms]' : isEntering ? `opacity-100 transition-all duration-[1200ms] ${scheme.main}` : 'opacity-0 translate-y-4'}`}>
                       <Image src={current.image} alt="Backdrop" fill className="object-cover opacity-20 blur-xl scale-110" sizes="(max-width: 1024px) 100vw, 540px" />
                       <div className="absolute inset-0"><Image src={current.image} alt={current.titleText} fill priority className="object-contain" sizes="(max-width: 1024px) 100vw, 540px" /></div>

@@ -101,8 +101,8 @@ export default function Footer({ settings: initialSettings }: { settings?: SiteS
         { name: 'TallyPrime Silver', href: '/products#compare' },
         { name: 'TallyPrime Gold', href: '/products#compare' },
         { name: 'TallyPrime Server', href: '/products#compare' },
-        { name: 'AWS Cloud Server', href: '/products#cloud' },
-        { name: 'NoSky Backup', href: '/services#nosky-backup' }
+        { name: 'AWS Cloud Server', href: '/cloud' },
+        { name: 'NoSky Backup', href: '/cloud' }
     ];
 
     const customizedModules = dynamicModules.length > 0 ? dynamicModules : [
@@ -125,13 +125,23 @@ export default function Footer({ settings: initialSettings }: { settings?: SiteS
     ];
 
     return (
-        <footer className="relative bg-[#025b8a] text-white pt-20 pb-8 px-6 overflow-hidden border-t border-white/10">
+        <footer 
+            className="relative text-white pt-20 pb-8 px-6 overflow-hidden border-t border-white/10"
+            style={{ backgroundColor: 'hsla(214, 27%, 10%, 1)' }}
+        >
             {/* Subtle Gradient Overlays */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00ABE4]/10 rounded-full blur-[120px] -mr-64 -mt-64 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#E9F1FA]/5 rounded-full blur-[100px] -ml-48 -mb-48 pointer-events-none" />
             
             {/* Main Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#025b8a] via-[#014a6e] to-[#001a29] opacity-100 pointer-events-none" />
+            <div 
+                className="absolute inset-0 opacity-100 pointer-events-none" 
+                style={{ 
+                    background: 'linear-gradient(360deg, hsla(214, 27%, 10%, 1) 0%, hsla(213, 28%, 19%, 1) 60%)',
+                    WebkitBackground: 'linear-gradient(360deg, hsla(214, 27%, 10%, 1) 0%, hsla(213, 28%, 19%, 1) 60%)',
+                    MozBackground: 'linear-gradient(360deg, hsla(214, 27%, 10%, 1) 0%, hsla(213, 28%, 19%, 1) 60%)',
+                }}
+            />
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 relative z-10">
                 {/* Company Info */}
@@ -241,7 +251,7 @@ export default function Footer({ settings: initialSettings }: { settings?: SiteS
                         </li>
                         <li className="flex items-start gap-3">
                             <svg className="w-5 h-5 text-[#00ABE4] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.031.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <div className="flex flex-col gap-3">
                                 {supportPhone.split(',').map((num, i) => (

@@ -22,10 +22,18 @@ export type SiteSettings = {
 export default function Navbar({ initialSettings }: { initialSettings?: any }) {
   const [settings, setSettings] = useState<any>(initialSettings || null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProductbarVisible, setIsProductbarVisible] = useState(true);
+
+  useEffect(() => {
+    const handleVisibilityChange = (e: any) => {
+      setIsProductbarVisible(e.detail.isVisible);
+    };
+    window.addEventListener('productbar-visibility-change', handleVisibilityChange);
+    return () => window.removeEventListener('productbar-visibility-change', handleVisibilityChange);
+  }, []);
 
   useEffect(() => {
     if (!initialSettings) fetchSettings();
-    // Prefetch common data to improve perceived speed and reduce background error rate
     prefetchData('/api/modules');
     prefetchData('/api/content?section=home_hero');
     prefetchData('/api/content?section=home_stats');
@@ -52,8 +60,6 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
 
     const supportPhone = settings?.support_phone || process.env.NEXT_PUBLIC_SUPPORT_PHONE || "9821309060";
 
-  const navLinks: { label: string; href: string }[] = [];
-
   const adminLinks = [
     { label: 'Dashboard', href: '/admin', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
     { label: 'Careers', href: '/admin/careers', icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
@@ -64,11 +70,10 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
     { label: 'News', href: '/admin/news', icon: 'M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z' },
     { label: 'Partners', href: '/admin/partners', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
     { label: 'Settings', href: '/admin/settings', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
-    // { label: 'Theme Palette', href: '/admin/palette', icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a1 1 0 010 2H5v12a2 2 0 002 2h12a2 2 0 002-2V5h-4a1 1 0 010-2h4a2 2 0 012 2v12a4 4 0 01-4 4H7z' },
   ];
 
   return (
-    <header className="relative z-[1000] w-full border-b border-white/5 bg-[#131921] shadow-sm">
+    <header className={`relative z-[1000] w-full border-b border-slate-200 bg-white transition-all duration-500 ${!isProductbarVisible ? 'shadow-xl rounded-b-2xl' : 'shadow-none rounded-none'}`}>
       <nav className="mx-auto flex h-12 lg:h-16 w-full max-w-7xl items-center justify-between px-6">
         <Link
           href="/"
@@ -80,25 +85,25 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
               alt="Sarvadnya Infotech logo"
               fill
               sizes="(max-width: 768px) 80px, 128px"
-              className="object-contain brightness-0 invert"
+              className="object-contain"
               priority
             />
           </div>
           <div className="flex items-center">
-            <div className="hidden sm:block w-5 h-5 lg:w-7 lg:h-7 rounded-md overflow-hidden shrink-0 bg-white/10 group-hover:scale-110 transition-transform shadow-sm border border-white/10">
+            <div className="w-5 h-5 lg:w-7 lg:h-7 rounded-md overflow-hidden shrink-0 bg-slate-50 group-hover:scale-110 transition-transform shadow-sm border border-slate-200">
               <Image
                 src="/logo.png"
                 alt="Sarvadnya Logo"
                 width={28}
                 height={28}
-                className="object-contain w-full h-full brightness-0 invert"
+                className="object-contain w-full h-full"
               />
             </div>
             <div className="flex flex-col ml-1 sm:ml-1.5 lg:ml-2 leading-none">
-              <span className="text-[11px] lg:text-[15px] font-bold tracking-tight text-white">
+              <span className="text-[11px] lg:text-[15px] font-bold tracking-tight text-slate-900">
                 Sarvadnya
               </span>
-              <span className="text-[7px] lg:text-[10px] font-medium uppercase tracking-[0.2em] text-sky-400">
+              <span className="text-[7px] lg:text-[10px] font-medium uppercase tracking-[0.2em] text-[#891E1E]">
                 Infotech LLP
               </span>
             </div>
@@ -110,21 +115,15 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
           <div className="hidden lg:block">
             <SearchBar />
           </div>
-          {/* <Link
-            href="/admin/palette"
-            className="text-[11px] font-bold uppercase tracking-widest text-emerald-400 hover:text-emerald-300 transition-colors"
-          >
-            Palette
-          </Link> */}
           <Link
             href="/careers"
-            className="inline-flex items-center justify-center rounded-full bg-white/5 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-white border border-white/10 transition-all duration-500 ease-in-out hover:bg-white/10 shadow-sm"
+            className="inline-flex items-center justify-center rounded-full bg-slate-50 px-5 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-900 border border-slate-200 transition-all duration-500 ease-in-out hover:bg-slate-100 shadow-sm"
           >
             Careers
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-[#00ABE4] text-white px-5 py-2 text-[11px] font-bold uppercase tracking-wider shadow-lg shadow-[#00ABE4]/20 transition-all duration-500 ease-in-out hover:bg-white hover:text-[#131921] hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center rounded-full bg-[#891E1E] text-white px-5 py-2 text-[11px] font-bold uppercase tracking-wider shadow-lg shadow-[#891E1E]/20 transition-all duration-500 ease-in-out hover:bg-slate-900 hover:text-white hover:-translate-y-0.5"
           >
             Support
           </Link>
@@ -133,7 +132,7 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
         {/* Mobile Toggle */}
         <div className="flex items-center gap-4 lg:hidden">
           <button 
-            className="p-2 text-white/70 hover:text-white transition-colors"
+            className="p-2 text-slate-600 hover:text-slate-900 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -152,19 +151,19 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
       {/* Mobile Menu Backdrop */}
       {isMenuOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-[#0371a3]/10 backdrop-blur-sm z-[998]"
+          className="lg:hidden fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-[998]"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
 
       {/* Mobile Menu Drawer */}
-      <div className={`lg:hidden absolute top-full left-0 right-0 bg-[#f0f9ff] border-b border-[#0371a3]/10 z-[999] transition-all duration-300 overflow-y-auto ${isMenuOpen ? 'max-h-[85vh] opacity-100 py-6 shadow-xl' : 'max-h-0 opacity-0 py-0'}`}>
+      <div className={`lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 z-[999] transition-all duration-300 overflow-y-auto ${isMenuOpen ? 'max-h-[85vh] opacity-100 py-6 shadow-xl' : 'max-h-0 opacity-0 py-0'}`}>
         <div className="flex flex-col gap-6 px-6">
           {/* Close Button at top of drawer for mobile */}
           <div className="flex justify-end">
             <button 
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#0371a3]/10 text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-[#0371a3] transition-colors shadow-sm"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-[9px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 transition-colors shadow-sm"
             >
               <span>Close Menu</span>
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -176,8 +175,8 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
           {/* Admin Section */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 px-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#0371a3]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0371a3]">Admin Management</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-[#891E1E]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#891E1E]">Admin Management</span>
             </div>
             <div className="grid grid-cols-1 gap-2">
               {adminLinks.map((link) => (
@@ -185,9 +184,9 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
                   key={link.label} 
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center gap-4 h-12 px-4 rounded-xl border border-[#0371a3]/5 bg-white text-[11px] font-bold uppercase tracking-widest text-slate-700 hover:bg-[#E9F1FA] hover:text-[#0371a3] transition-all shadow-sm"
+                  className="flex items-center gap-4 h-12 px-4 rounded-xl border border-slate-100 bg-white text-[11px] font-bold uppercase tracking-widest text-slate-700 hover:bg-slate-50 hover:text-[#891E1E] transition-all shadow-sm"
                 >
-                  <svg className="w-4 h-4 text-[#0371a3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-[#891E1E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={link.icon} />
                   </svg>
                   {link.label}
@@ -196,20 +195,20 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
             </div>
           </div>
           
-          <div className="w-full h-px bg-[#E9F1FA]" />
+          <div className="w-full h-px bg-slate-100" />
           
           <div className="flex flex-col gap-3">
             <Link
               href="/careers"
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center justify-center h-12 rounded-xl border border-[#0371a3]/10 bg-white text-[11px] font-black uppercase tracking-widest text-slate-900 shadow-sm hover:bg-[#E9F1FA]"
+              className="flex items-center justify-center h-12 rounded-xl border border-slate-200 bg-white text-[11px] font-black uppercase tracking-widest text-slate-900 shadow-sm hover:bg-slate-50"
             >
               Join Our Team
             </Link>
             <Link
               href="/contact"
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center justify-center h-12 rounded-xl bg-[#0371a3] text-white text-[11px] font-black uppercase tracking-widest shadow-xl shadow-[#0371a3]/20"
+              className="flex items-center justify-center h-12 rounded-xl bg-[#891E1E] text-white text-[11px] font-black uppercase tracking-widest shadow-xl shadow-[#891E1E]/20"
             >
               Get Priority Support
             </Link>
@@ -217,9 +216,9 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
 
           <a
             href={`tel:${supportPhone}`}
-            className="flex items-center justify-center gap-3 text-slate-500 hover:text-[#0371a3] transition-colors py-2 border border-[#0371a3]/10 rounded-xl bg-white shadow-sm"
+            className="flex items-center justify-center gap-3 text-slate-500 hover:text-slate-900 transition-colors py-2 border border-slate-200 rounded-xl bg-white shadow-sm"
           >
-            <svg className="w-4 h-4 text-[#0371a3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 text-[#891E1E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.031.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
             <span className="text-[10px] font-black uppercase tracking-widest">{formatPhoneDisplay(supportPhone.split(',')[0])}</span>
@@ -228,7 +227,7 @@ export default function Navbar({ initialSettings }: { initialSettings?: any }) {
           {/* Explicit Unexpand Button at very bottom */}
           <button 
             onClick={() => setIsMenuOpen(false)}
-            className="w-full py-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-[#0371a3] transition-colors border-t border-[#E9F1FA] mt-4"
+            className="w-full py-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-slate-900 transition-colors border-t border-slate-100 mt-4"
           >
             ↑ Collapse Navigation ↑
           </button>

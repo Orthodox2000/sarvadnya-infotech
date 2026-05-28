@@ -71,18 +71,44 @@ export default function QuickSupportModal({ isOpen, onClose }: QuickSupportModal
 
       if (data && data.error) throw new Error(data.error);
 
+      // Simulate typing effect
+      const fullText = data.message;
+      const aiMessageId = (Date.now() + 1).toString();
+      
       const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: data.message,
+        id: aiMessageId,
+        text: "",
         sender: 'ai',
         timestamp: new Date(),
-        showContact: true
+        showContact: false
       };
+      
       setMessages(prev => [...prev, aiMessage]);
+
+      let currentText = "";
+      const chars = fullText.split("");
+      const batchSize = 4; // Print 4 characters at once for extreme speed
+      
+      for (let i = 0; i < chars.length; i += batchSize) {
+        currentText += chars.slice(i, i + batchSize).join("");
+        // Using functional update to avoid stale closures
+        setMessages(prev => prev.map(m => 
+          m.id === aiMessageId ? { ...m, text: currentText } : m
+        ));
+        
+        // Practical minimum browser delay to achieve 0.05ms "feel" via batching
+        await new Promise(resolve => setTimeout(resolve, 1));
+      }
+
+      // Final update to ensure everything is correct and show contact
+      setMessages(prev => prev.map(m => 
+        m.id === aiMessageId ? { ...m, text: fullText, showContact: true } : m
+      ));
+
     } catch (err: any) {
       console.error('Chat error:', err);
       const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
+        id: (Date.now() + 2).toString(),
         text: err.message || "I'm sorry, I'm having trouble connecting right now. Please try again or contact us directly.",
         sender: 'ai',
         timestamp: new Date(),

@@ -61,17 +61,17 @@ export default function TutorialsPage() {
         setIsModalOpen(true);
     };
 
-    if (loading) return <div className="min-h-screen flex items-center justify-center font-black text-[#0371a3] bg-[#f0f9ff]/30">Loading Learning Center...</div>;
+    if (loading) return <div className="min-h-screen flex items-center justify-center font-black text-[#891E1E] bg-[#F5F5F5]">Loading Learning Center...</div>;
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-[#F5F5F5]">
             <main className="max-w-7xl mx-auto px-6 py-16">
                 <div className="text-center mb-16 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f9ff] border border-[#E9F1FA]">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#0371a3]">Expert Resources</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#891E1E]/5 border border-[#891E1E]/10">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-[#891E1E]">Expert Resources</span>
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
-                        Learning & <span className="text-[#00ABE4]">Support Hub</span>
+                        Learning & <span className="text-[#891E1E]">Support Hub</span>
                     </h1>
                     <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
                         Professional guides, webinars, and technical documentation to master TallyPrime and scale your business.
@@ -84,11 +84,11 @@ export default function TutorialsPage() {
                         <input 
                             type="text" 
                             placeholder="Search by topic, feature or tags (e.g. GST, Cloud...)"
-                            className="w-full pl-14 pr-6 py-4 bg-[#f0f9ff]/50 border border-[#E9F1FA] rounded-[2rem] shadow-sm focus:ring-4 focus:ring-[#00ABE4]/5 focus:border-[#00ABE4] outline-none transition-all text-slate-900 font-bold placeholder:text-slate-400"
+                            className="w-full pl-14 pr-6 py-4 bg-white border border-slate-100 rounded-[2rem] shadow-sm focus:ring-4 focus:ring-[#891E1E]/5 focus:border-[#891E1E] outline-none transition-all text-slate-900 font-bold placeholder:text-slate-400"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-slate-400 group-focus-within:text-[#00ABE4] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-slate-400 group-focus-within:text-[#891E1E] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
@@ -100,8 +100,8 @@ export default function TutorialsPage() {
                                 onClick={() => setActiveFolder(folder)}
                                 className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
                                     activeFolder === folder 
-                                    ? 'bg-[#0371a3] text-white shadow-xl shadow-[#0371a3]/20 scale-105' 
-                                    : 'bg-white border border-[#E9F1FA] text-slate-500 hover:border-[#00ABE4] hover:text-[#00ABE4]'
+                                    ? 'bg-[#891E1E] text-white shadow-xl shadow-[#891E1E]/20 scale-105' 
+                                    : 'bg-white border border-slate-200 text-slate-500 hover:border-[#891E1E] hover:text-[#891E1E]'
                                 }`}
                             >
                                 {folder}
@@ -114,9 +114,9 @@ export default function TutorialsPage() {
                     {filteredTutorials.map((tutorial) => (
                         <div 
                             key={tutorial._id} 
-                            className="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl hover:border-[#00ABE4]/20 transition-all duration-500 flex flex-col h-full"
+                            className="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl hover:border-[#891E1E]/20 transition-all duration-500 flex flex-col h-full"
                         >
-                            <div className="aspect-[4/3] relative overflow-hidden bg-[#f0f9ff]">
+                            <div className="aspect-video relative overflow-hidden bg-slate-50">
                                 {tutorial.type === 'video' ? (
                                     <Image 
                                         src={getYoutubeThumbnail(tutorial.url)} 
@@ -140,30 +140,30 @@ export default function TutorialsPage() {
                                 )}
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                                     <div className="w-10 h-10 bg-white/95 rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-500">
-                                        <svg className="w-5 h-5 text-[#0371a3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
+                                        <svg className="w-5 h-5 text-[#891E1E] translate-x-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" /></svg>
                                     </div>
                                 </div>
                                 <div className="absolute top-3 left-3">
-                                    <span className="px-2 py-0.5 bg-white/70 backdrop-blur-md text-[#0371a3] text-[8px] font-black uppercase tracking-widest rounded-full shadow-sm border border-white/50">
+                                    <span className="px-2 py-0.5 bg-white/70 backdrop-blur-md text-[#891E1E] text-[8px] font-black uppercase tracking-widest rounded-full shadow-sm border border-white/50">
                                         {tutorial.folder || 'General'}
                                     </span>
                                 </div>
                             </div>
                             <div className="p-4 flex flex-col flex-1">
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="text-[#0371a3] text-[8px] font-black uppercase tracking-widest">
+                                    <span className="text-[#891E1E] text-[8px] font-black uppercase tracking-widest">
                                         {tutorial.type === 'video' ? 'Webinar' : 'Article'}
                                     </span>
                                     <span className="text-slate-400 text-[8px] font-bold">{tutorial.date}</span>
                                 </div>
-                                <h3 className="text-xs font-black text-slate-900 mb-2 group-hover:text-[#00ABE4] transition-colors leading-tight line-clamp-2 tracking-tight">{tutorial.title}</h3>
+                                <h3 className="text-xs font-black text-slate-900 mb-2 group-hover:text-[#891E1E] transition-colors leading-tight line-clamp-2 tracking-tight">{tutorial.title}</h3>
                                 <p className="text-slate-500 text-[10px] leading-relaxed line-clamp-2 font-medium opacity-80 mb-4">
                                     {tutorial.description}
                                 </p>
                                 
                                 <button 
                                     onClick={() => openDetails(tutorial)}
-                                    className="mt-auto w-full py-2 bg-slate-50 text-slate-600 text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-[#0371a3] hover:text-white transition-all border border-slate-100"
+                                    className="mt-auto w-full py-2 bg-slate-50 text-slate-600 text-[9px] font-black uppercase tracking-widest rounded-xl hover:bg-[#891E1E] hover:text-white transition-all border border-slate-100"
                                 >
                                     View Details
                                 </button>
@@ -171,14 +171,14 @@ export default function TutorialsPage() {
                         </div>
                     ))}
                     {filteredTutorials.length === 0 && (
-                        <div className="col-span-full flex flex-col items-center justify-center py-20 bg-[#f0f9ff]/30 rounded-[3rem] border-2 border-dashed border-[#E9F1FA]">
+                        <div className="col-span-full flex flex-col items-center justify-center py-20 bg-[#891E1E]/5 rounded-[3rem] border-2 border-dashed border-[#891E1E]/10">
                             <p className="text-slate-400 font-black text-lg tracking-tight">No resources found.</p>
-                            <button onClick={() => {setSearchQuery(''); setActiveFolder('All');}} className="mt-3 text-[#00ABE4] font-black uppercase tracking-widest text-[10px] underline decoration-2 underline-offset-4">Clear filters</button>
+                            <button onClick={() => {setSearchQuery(''); setActiveFolder('All');}} className="mt-3 text-[#891E1E] font-black uppercase tracking-widest text-[10px] underline decoration-2 underline-offset-4">Clear filters</button>
                         </div>
                     )}
                 </div>
                 
-                <div className="mt-20 bg-[#0371a3] rounded-[2.5rem] p-8 md:p-12 text-center text-white relative overflow-hidden group shadow-2xl">
+                <div className="mt-20 bg-[#891E1E] rounded-[2.5rem] p-8 md:p-12 text-center text-white relative overflow-hidden group shadow-2xl">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
                     <div className="relative z-10">
                         <h2 className="text-2xl md:text-4xl font-black mb-4 tracking-tighter">Need Specialized Training?</h2>
@@ -187,7 +187,7 @@ export default function TutorialsPage() {
                         </p>
                         <a 
                             href="mailto:contact@sarvadnya-infotech.com" 
-                            className="inline-flex items-center justify-center bg-white text-[#0371a3] px-8 py-3.5 rounded-full font-black text-[10px] uppercase tracking-[0.2em] hover:bg-[#E9F1FA] hover:scale-105 transition-all transform active:scale-95 shadow-xl"
+                            className="inline-flex items-center justify-center bg-white text-[#891E1E] px-8 py-3.5 rounded-full font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-50 hover:scale-105 transition-all transform active:scale-95 shadow-xl"
                         >
                             Schedule Training
                         </a>
@@ -226,7 +226,7 @@ export default function TutorialsPage() {
                                     ></iframe>
                                 </div>
                             ) : (
-                                <div className="aspect-video w-full relative bg-[#f0f9ff] flex items-center justify-center">
+                                <div className="aspect-video w-full relative bg-slate-50 flex items-center justify-center">
                                      <Image 
                                         src={selectedTutorial.thumbnail || '/logo.png'} 
                                         alt={selectedTutorial.title}
@@ -235,18 +235,18 @@ export default function TutorialsPage() {
                                     />
                                     <div className="relative z-10 flex flex-col items-center gap-4">
                                         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl">
-                                            <svg className="w-8 h-8 text-[#0371a3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                            <svg className="w-8 h-8 text-[#891E1E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                             </svg>
                                         </div>
-                                        <span className="text-xs font-black text-[#0371a3] uppercase tracking-widest">Article Resource</span>
+                                        <span className="text-xs font-black text-[#891E1E] uppercase tracking-widest">Article Resource</span>
                                     </div>
                                 </div>
                             )}
 
                             <div className="p-8 md:p-12">
                                 <div className="flex items-center gap-3 mb-6">
-                                    <span className="px-3 py-1 bg-sky-50 text-[#0371a3] text-[10px] font-black uppercase tracking-widest rounded-full border border-sky-100">
+                                    <span className="px-3 py-1 bg-[#891E1E]/5 text-[#891E1E] text-[10px] font-black uppercase tracking-widest rounded-full border border-[#891E1E]/10">
                                         {selectedTutorial.folder || 'General'}
                                     </span>
                                     <span className="text-slate-400 text-[10px] font-bold tracking-widest">{selectedTutorial.date}</span>
@@ -267,7 +267,7 @@ export default function TutorialsPage() {
                                         <a 
                                             href={selectedTutorial.url}
                                             target="_blank"
-                                            className="flex-1 py-4 bg-[#0371a3] text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-[#00ABE4] transition-all flex items-center justify-center gap-3"
+                                            className="flex-1 py-4 bg-[#891E1E] text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-slate-900 transition-all flex items-center justify-center gap-3"
                                         >
                                             Watch on YouTube
                                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
@@ -276,7 +276,7 @@ export default function TutorialsPage() {
                                         <a 
                                             href={selectedTutorial.url}
                                             target="_blank"
-                                            className="flex-1 py-4 bg-[#0371a3] text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-[#00ABE4] transition-all flex items-center justify-center gap-3"
+                                            className="flex-1 py-4 bg-[#891E1E] text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:bg-slate-900 transition-all flex items-center justify-center gap-3"
                                         >
                                             Open Full Article
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>

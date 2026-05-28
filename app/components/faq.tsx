@@ -68,23 +68,23 @@ const FAQ = ({ initialData, initialSettings }: { initialData?: any[], initialSet
 
     if (loading && faqData.length === 0) return (
         <div className="w-full h-96 flex items-center justify-center">
-            <div className="w-10 h-10 border-4 border-[#00ABE4] border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-10 h-10 border-4 border-[#891E1E] border-t-transparent rounded-full animate-spin"></div>
         </div>
     );
 
     return (
         <section 
             ref={sectionRef}
-            className="w-full py-16 md:py-24 bg-white overflow-hidden"
+            className="w-full py-16 md:py-24 bg-[#F5F5F5] overflow-hidden"
         >
             <div className="max-w-4xl mx-auto px-6">
                 {/* Header */}
                 <div className={`text-center mb-16 space-y-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f9ff] border border-[#E9F1FA]">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#0371a3]">Common Questions</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#891E1E]/5 border border-[#891E1E]/10">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-[#891E1E]">Common Questions</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
-                        Professional <span className="text-[#00ABE4] underline decoration-[#E9F1FA] underline-offset-8">Guidance</span>
+                        Professional <span className="text-[#891E1E] underline decoration-[#891E1E]/20 underline-offset-8">Guidance</span>
                     </h2>
                     <p className="text-slate-500 font-medium max-w-xl mx-auto leading-relaxed">
                         Find instant answers to the most common queries about TallyPrime, Cloud Hosting, and our support services.
@@ -96,11 +96,11 @@ const FAQ = ({ initialData, initialSettings }: { initialData?: any[], initialSet
                     <input 
                         type="text" 
                         placeholder="Search for answers..."
-                        className="w-full pl-14 pr-6 py-5 bg-[#f0f9ff]/50 border border-[#E9F1FA] rounded-[2rem] text-sm focus:outline-none focus:ring-4 focus:ring-[#00ABE4]/5 focus:border-[#00ABE4] transition-all shadow-sm text-slate-900 placeholder:text-slate-400"
+                        className="w-full pl-14 pr-6 py-5 bg-[#891E1E]/5 border border-[#891E1E]/10 rounded-[2rem] text-sm focus:outline-none focus:ring-4 focus:ring-[#891E1E]/5 focus:border-[#891E1E] transition-all shadow-sm text-slate-900 placeholder:text-slate-400"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <svg className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#00ABE4] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#891E1E] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
@@ -111,30 +111,30 @@ const FAQ = ({ initialData, initialSettings }: { initialData?: any[], initialSet
                         <div 
                             key={index}
                             style={{ transitionDelay: isVisible ? `${200 + index * 50}ms` : '0ms' }}
-                            className={`group rounded-3xl transition-all duration-700 border ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${activeIndex === index ? 'bg-[#f0f9ff] border-[#00ABE4]/20 shadow-sm' : 'bg-white border-slate-100 hover:border-[#E9F1FA]'}`}
+                            className={`group rounded-3xl transition-all duration-700 border ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${activeIndex === index ? 'bg-[#891E1E]/5 border-[#891E1E]/20 shadow-sm' : 'bg-white border-slate-100 hover:border-[#891E1E]/10'}`}
                         >
                             <button 
                                 onClick={() => toggleIndex(index)}
                                 className="w-full flex items-center justify-between p-6 text-left"
                             >
-                                <span className={`text-sm md:text-base font-bold transition-colors ${activeIndex === index ? 'text-[#0371a3]' : 'text-slate-900 group-hover:text-[#00ABE4]'}`}>
+                                <span className={`text-sm md:text-base font-bold transition-colors ${activeIndex === index ? 'text-[#891E1E]' : 'text-slate-900 group-hover:text-[#891E1E]'}`}>
                                     {item.question}
                                 </span>
-                                <div className={`flex-shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${activeIndex === index ? 'bg-[#00ABE4] text-white rotate-180 shadow-lg shadow-[#00ABE4]/20' : 'bg-[#f0f9ff] text-[#00ABE4]'}`}>
+                                <div className={`flex-shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${activeIndex === index ? 'bg-[#891E1E] text-white rotate-180 shadow-lg shadow-[#891E1E]/20' : 'bg-[#891E1E]/10 text-[#891E1E]'}`}>
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </div>
                             </button>
                             <div className={`overflow-hidden transition-all duration-300 ease-in-out ${activeIndex === index ? 'max-h-96' : 'max-h-0'}`}>
-                                <div className="p-6 pt-0 text-sm leading-relaxed text-slate-600 font-medium border-t border-[#E9F1FA]/50">
+                                <div className="p-6 pt-0 text-sm leading-relaxed text-slate-600 font-medium border-t border-[#891E1E]/5">
                                     <div className="py-4">
                                         {item.answer}
                                     </div>
                                     <div className="flex flex-wrap gap-3 mt-2">
                                         <a 
                                             href={`tel:${supportPhone}`} 
-                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#f0f9ff] text-[10px] font-black uppercase tracking-wider text-[#0371a3] hover:bg-[#0371a3] hover:text-white transition-all active:scale-95 border border-[#E9F1FA] shadow-sm"
+                                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#891E1E]/5 text-[10px] font-black uppercase tracking-wider text-[#891E1E] hover:bg-[#891E1E] hover:text-white transition-all active:scale-95 border border-[#891E1E]/10 shadow-sm"
                                         >
                                             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
@@ -159,7 +159,7 @@ const FAQ = ({ initialData, initialSettings }: { initialData?: any[], initialSet
                         <div className={`text-center pt-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <button 
                                 onClick={() => setIsExpanded(!isExpanded)}
-                                className="px-8 py-3 rounded-2xl bg-[#f0f9ff] text-[#0371a3] text-xs font-black uppercase tracking-widest hover:bg-[#E9F1FA] transition-all active:scale-95 border border-[#E9F1FA]"
+                                className="px-8 py-3 rounded-2xl bg-[#891E1E]/5 text-[#891E1E] text-xs font-black uppercase tracking-widest hover:bg-[#891E1E]/10 transition-all active:scale-95 border border-[#891E1E]/10"
                             >
                                 {isExpanded ? 'Show Less' : 'Show All Questions'}
                             </button>
@@ -167,7 +167,7 @@ const FAQ = ({ initialData, initialSettings }: { initialData?: any[], initialSet
                     )}
 
                     {filteredFaq.length === 0 && (
-                        <div className={`text-center py-20 bg-[#f0f9ff]/50 rounded-[3rem] border border-dashed border-[#E9F1FA] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <div className={`text-center py-20 bg-[#891E1E]/5 rounded-[3rem] border border-dashed border-[#891E1E]/10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                             <p className="text-slate-500">No matching questions found. Try different keywords.</p>
                         </div>
                     )}
